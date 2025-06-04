@@ -1,4 +1,4 @@
-# ❄️ Donegal SQL Test Case Generation Agent System
+# ❄️ Snowflake Test Case Generation Agent System
 
 A sophisticated multi-agent system that automatically processes software requirements documents and generates executable SQL test cases for Snowflake databases, specifically designed for Property & Casualty (P&C) Insurance domain.
 
@@ -224,18 +224,4 @@ The system includes comprehensive error handling:
 2. Update `main_orchestrator.py` to include new agents
 3. Modify the Streamlit UI to display new agent outputs
 
-## 📞 Support
-
-For issues, questions, or contributions:
-1. Check the error messages in the Streamlit interface
-2. Review the console logs for detailed debugging information
-3. Ensure all credentials are properly configured
-4. Verify network connectivity to Snowflake and Anthropic APIs
-
-## 📄 License
-
-Multi-Agent System for P&C Insurance Test Case Generation - Donegal AI
-
 ---
-
-*Built with ❤️ for automated database testing and quality assurance*
