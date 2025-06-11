@@ -13,6 +13,7 @@ This application leverages a three-agent architecture to transform natural langu
 
 ## 🏗️ System Architecture
 
+
 ```mermaid
 graph TD
     A[Requirements Document Upload] --> B[Main Orchestrator]
@@ -20,20 +21,21 @@ graph TD
     C --> D[Snowflake Cortex LLM]
     D --> E[High-Level Use Cases]
     E --> F[Agent 2: SQL Generator]
-    F --> G[Snowflake Cortex AI_Complete()]
+    F --> G[Claude AI API]
     G --> H[Generated SQL Queries]
     H --> I[Agent 3: SQL Executor]
     I --> J[Snowflake Database]
     J --> K[Execution Results]
     K --> L[Streamlit Dashboard]
-
-    style A fill:#e1f5fe
+    
+    style A fill:#e1f5feAdd commentMore actions
     style B fill:#fff3e0
     style C fill:#f3e5f5
     style F fill:#e8f5e8
     style I fill:#fff8e1
     style L fill:#fce4ec
 ```
+Add comment
 
 ## 🎯 Key Features
 
