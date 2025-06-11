@@ -402,7 +402,7 @@ with col1:
 with col2:
     st.markdown("""
     <div class="main-header"> 
-        <h1>❄️ Donegal SQL Test Case Generator ❄️</h1>
+        <h1>❄️  SQL Test Case Generator ❄️</h1>
         <p>AI-Powered Multi-Agent System for P&C Insurance Test Case Generation</p>
     </div>
     """, unsafe_allow_html=True)
@@ -615,6 +615,6 @@ st.markdown("---")
 st.markdown("""
 <div style="text-align: center; padding: 2rem; color: #7f8c8d;">
     <p><strong>🏢 Multi-Agent System for P&C Insurance Test Case Generation</strong></p>
-    <p>Powered by Donegal AI • Built with ❤️ using Streamlit</p>
+    <p>Powered by  AI • Built with ❤️ using Streamlit</p>
 </div>
 """, unsafe_allow_html=True)
