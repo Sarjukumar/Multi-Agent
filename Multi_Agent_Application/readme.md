@@ -21,7 +21,7 @@ graph TD
     C --> D[Snowflake Cortex LLM]
     D --> E[High-Level Use Cases]
     E --> F[Agent 2: SQL Generator]
-    F --> G[Claude AI API]
+    F --> G[Cortex AI_COMPLETE]
     G --> H[Generated SQL Queries]
     H --> I[Agent 3: SQL Executor]
     I --> J[Snowflake Database]
