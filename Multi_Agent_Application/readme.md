@@ -16,7 +16,7 @@ This application leverages a three-agent architecture to transform natural langu
 
 ```mermaid
 graph TD
-    A[Requirements Document Upload] --> B[Main Orchestrator]
+    A[Requirements Document Upload] --> B[Streamlit Application]
     B --> C[Agent 1: Requirements Analyzer]
     C --> D[Snowflake Cortex LLM]
     D --> E[High-Level Use Cases]
@@ -57,7 +57,7 @@ Add comment
 ### Step 1: Clone the Repository
 ```bash
 git clone <repository-url>
-cd -sql-test-generator
+cd -Multi_Agent_Application
 ```
 
 ### Step 2: Install Dependencies
@@ -194,7 +194,6 @@ HAVING p.TotalPremium != SUM(pc.PremiumForCoverage);
 ## ⚠️ Important Notes
 
 ### Security
-- Never commit API keys or database credentials to version control  
 - Use environment variables or secure configuration management  
 - Ensure proper Snowflake role-based access controls  
 
@@ -225,7 +224,7 @@ The system includes comprehensive error handling:
 
 ### Custom Agents
 1. Create new agent classes following the existing pattern
-2. Update `main_orchestrator.py` to include new agents
+2. Update `app.py` to include new agents
 3. Modify the Streamlit UI to display new agent outputs
 
 ## 📞 Support
@@ -238,8 +237,6 @@ For issues, questions, or contributions:
 
 ## 📄 License
 
-Multi-Agent System for P&C Insurance Test Case Generation – AI
+Multi-Agent System for P&C Insurance Test Case Generation
 
 ---
-
-*Built with ❤️ for automated database testing and quality assurance*
