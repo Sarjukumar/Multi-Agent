@@ -1,14 +1,15 @@
+
 # ❄️  SQL Test Case Generation Agent System
 
-A sophisticated multi-agent system that automatically processes software requirements documents and generates executable SQL test cases for Snowflake databases, specifically designed for Property & Casualty (P&C) Insurance domain.
+A sophisticated multi-agent system that automatically processes software requirements documents and generates executable SQL test cases for Snowflake databases, specifically designed for the Property & Casualty (P&C) Insurance domain.
 
 ## 🚀 Overview
 
 This application leverages a three-agent architecture to transform natural language requirements into comprehensive database test scenarios:
 
-1. **Agent 1 (Requirements Analyzer)** - Analyzes requirements documents using Snowflake Cortex LLM
-2. **Agent 2 (SQL Generator)** - Converts use cases into executable SQL queries using Claude AI
-3. **Agent 3 (SQL Executor)** - Executes queries against Snowflake and formats results
+1. **Agent 1 (Requirements Analyzer)** – Analyzes requirements documents using Snowflake Cortex LLM  
+2. **Agent 2 (SQL Generator)** – Converts use cases into executable SQL queries using **Snowflake Cortex `AI_Complete()` function**  
+3. **Agent 3 (SQL Executor)** – Executes queries against Snowflake and formats results
 
 ## 🏗️ System Architecture
 
@@ -19,13 +20,13 @@ graph TD
     C --> D[Snowflake Cortex LLM]
     D --> E[High-Level Use Cases]
     E --> F[Agent 2: SQL Generator]
-    F --> G[Claude AI API]
+    F --> G[Snowflake Cortex AI_Complete()]
     G --> H[Generated SQL Queries]
     H --> I[Agent 3: SQL Executor]
     I --> J[Snowflake Database]
     J --> K[Execution Results]
     K --> L[Streamlit Dashboard]
-    
+
     style A fill:#e1f5fe
     style B fill:#fff3e0
     style C fill:#f3e5f5
@@ -36,18 +37,17 @@ graph TD
 
 ## 🎯 Key Features
 
-- **Automated Test Case Generation**: Transforms requirements into actionable database tests
-- **Multi-Agent Architecture**: Specialized agents for different stages of the pipeline
-- **P&C Insurance Domain**: Pre-configured with insurance industry database schema
-- **Real-time Processing**: Interactive Streamlit interface with live results
-- **Comprehensive Coverage**: Generates both simple and complex SQL test scenarios
-- **Error Handling**: Robust error management and user feedback
+- **Automated Test Case Generation**: Transforms requirements into actionable database tests  
+- **Multi-Agent Architecture**: Specialized agents for different stages of the pipeline  
+- **P&C Insurance Domain**: Pre-configured with insurance industry database schema  
+- **Real-time Processing**: Interactive Streamlit interface with live results  
+- **Comprehensive Coverage**: Generates both simple and complex SQL test scenarios  
+- **Error Handling**: Robust error management and user feedback  
 
 ## 📋 Prerequisites
 
-- Python 3.8+
-- Snowflake account with appropriate permissions
-- Anthropic Claude API key
+- Python 3.8+  
+- Snowflake account with appropriate permissions  
 - Required Python packages (see requirements.txt)
 
 ## 🛠️ Installation
@@ -78,9 +78,6 @@ class ConfigurationExecutor:
             "database": "your_database",
             "schema": "your_schema"
         }
-    
-    def get_api_key(self):
-        return "your_anthropic_api_key"
 ```
 
 ### Step 4: Run the Application
@@ -89,6 +86,9 @@ streamlit run app.py
 ```
 
 ## 📖 Step-by-Step Usage Guide
+
+<details>
+<summary>Expand to view full guide</summary>
 
 ### Step 1: Prepare Your Requirements Document
 - Create a `.txt` file containing your software requirements
@@ -121,6 +121,8 @@ streamlit run app.py
 - Results are limited to 10 rows per query for readability
 - Check for any execution errors or unexpected results
 
+</details>
+
 ## 🗄️ Database Schema
 
 The system uses a comprehensive P&C Insurance database schema including:
@@ -147,22 +149,22 @@ The system uses a comprehensive P&C Insurance database schema including:
 ## 🔧 Agent Details
 
 ### Agent 1: Requirements Analyzer
-- **Purpose**: Extracts testable scenarios from requirements
-- **Technology**: Snowflake Cortex LLM (Mistral-Large2)
-- **Output**: JSON array of high-level use cases
-- **Limit**: Generates 1-2 focused use cases per run
+- **Purpose**: Extracts testable scenarios from requirements  
+- **Technology**: Snowflake Cortex LLM (Mistral-Large2)  
+- **Output**: JSON array of high-level use cases  
+- **Limit**: Generates 1-2 focused use cases per run  
 
 ### Agent 2: SQL Generator
-- **Purpose**: Converts use cases to executable SQL
-- **Technology**: Anthropic Claude API
-- **Input**: High-level use cases + P&C schema
-- **Output**: Snowflake-compatible SQL queries
+- **Purpose**: Converts use cases to executable SQL  
+- **Technology**: **Snowflake Cortex `AI_Complete()` function**  
+- **Input**: High-level use cases + P&C schema  
+- **Output**: Snowflake-compatible SQL queries  
 
 ### Agent 3: SQL Executor
-- **Purpose**: Executes queries and formats results
-- **Technology**: Snowflake Snowpark
-- **Features**: Error handling, result limiting, tabular formatting
-- **Output**: Structured query results
+- **Purpose**: Executes queries and formats results  
+- **Technology**: Snowflake Snowpark  
+- **Features**: Error handling, result limiting, tabular formatting  
+- **Output**: Structured query results  
 
 ## 📊 Sample Output
 
@@ -190,27 +192,27 @@ HAVING p.TotalPremium != SUM(pc.PremiumForCoverage);
 ## ⚠️ Important Notes
 
 ### Security
-- Never commit API keys or database credentials to version control
-- Use environment variables or secure configuration management
-- Ensure proper Snowflake role-based access controls
+- Never commit API keys or database credentials to version control  
+- Use environment variables or secure configuration management  
+- Ensure proper Snowflake role-based access controls  
 
 ### Performance
-- Query results are limited to 10 rows for UI performance
-- Large requirements documents may take longer to process
-- Consider breaking down complex requirements into smaller chunks
+- Query results are limited to 10 rows for UI performance  
+- Large requirements documents may take longer to process  
+- Consider breaking down complex requirements into smaller chunks  
 
 ### Limitations
-- Currently optimized for P&C Insurance domain
-- Requires valid Snowflake and Anthropic API credentials
-- SQL execution depends on actual database connectivity
+- Currently optimized for P&C Insurance domain  
+- Requires valid Snowflake API credentials  
+- SQL execution depends on actual database connectivity  
 
 ## 🛡️ Error Handling
 
 The system includes comprehensive error handling:
-- **Connection Errors**: Clear messages for database connectivity issues
-- **API Errors**: Graceful handling of LLM API failures
-- **SQL Errors**: Detailed SQL execution error reporting
-- **Input Validation**: Requirements document format validation
+- **Connection Errors**: Clear messages for database connectivity issues  
+- **API Errors**: Graceful handling of LLM API failures  
+- **SQL Errors**: Detailed SQL execution error reporting  
+- **Input Validation**: Requirements document format validation  
 
 ## 🔄 Extending the System
 
@@ -230,11 +232,11 @@ For issues, questions, or contributions:
 1. Check the error messages in the Streamlit interface
 2. Review the console logs for detailed debugging information
 3. Ensure all credentials are properly configured
-4. Verify network connectivity to Snowflake and Anthropic APIs
+4. Verify network connectivity to Snowflake APIs
 
 ## 📄 License
 
-Multi-Agent System for P&C Insurance Test Case Generation -  AI
+Multi-Agent System for P&C Insurance Test Case Generation – AI
 
 ---
 
