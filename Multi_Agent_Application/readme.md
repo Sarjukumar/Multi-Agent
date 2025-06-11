@@ -1,4 +1,4 @@
-# ❄️ Donegal SQL Test Case Generation Agent System
+# ❄️  SQL Test Case Generation Agent System
 
 A sophisticated multi-agent system that automatically processes software requirements documents and generates executable SQL test cases for Snowflake databases, specifically designed for Property & Casualty (P&C) Insurance domain.
 
@@ -55,7 +55,7 @@ graph TD
 ### Step 1: Clone the Repository
 ```bash
 git clone <repository-url>
-cd donegal-sql-test-generator
+cd -sql-test-generator
 ```
 
 ### Step 2: Install Dependencies
@@ -234,7 +234,7 @@ For issues, questions, or contributions:
 
 ## 📄 License
 
-Multi-Agent System for P&C Insurance Test Case Generation - Donegal AI
+Multi-Agent System for P&C Insurance Test Case Generation -  AI
 
 ---
 
