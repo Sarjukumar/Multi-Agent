@@ -9,7 +9,7 @@ icon_image = Image.open(icon_path)
 
 # --- Page Configuration ---
 st.set_page_config(
-    page_title="Donegal SQL Test Case Generation Multi Agent System",
+    page_title=" SQL Test Case Generation Multi Agent System",
     page_icon=icon_image,
     layout="wide"
 )
@@ -80,7 +80,7 @@ def display_results(results):
 
 # --- Main Application UI ---
 st.image(icon_image) 
-st.header("Donegal SQL Test Case Generation Multi Agent System")
+st.header(" SQL Test Case Generation Multi Agent System")
 st.markdown("""
 This application uses a multi-agent system to process a requirements document, 
 generate SQL test use cases for a Snowflake database, and execute them.
@@ -129,5 +129,5 @@ if "results" in st.session_state:
     display_results(st.session_state.results)
 
 st.markdown("---")
-st.markdown("Multi-Agent System for P and C Insurnace Test Case Generation - Donegal AI")
+st.markdown("Multi-Agent System for P and C Insurnace Test Case Generation -  AI")
 
