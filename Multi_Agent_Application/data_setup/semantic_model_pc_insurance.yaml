@@ -1,0 +1,161 @@
+# Conceptual P&C Insurance Semantic Model (YAML)
+version: 1
+semantic_model:
+  name: PC_Insurance_DB_SemanticModel
+  description: Semantic model for the Property & Casualty Insurance database.
+  tables:
+    - name: Users
+      columns:
+        - {name: UserID, data_type: VARCHAR, is_primary_key: true}
+        - {name: UserName, data_type: VARCHAR}
+        - {name: Role, data_type: VARCHAR}
+    - name: Customers
+      columns:
+        - {name: CustomerID, data_type: VARCHAR, is_primary_key: true}
+        - {name: CustomerType, data_type: VARCHAR}
+        - {name: FirstName, data_type: VARCHAR}
+        - {name: LastName, data_type: VARCHAR}
+        - {name: CompanyName, data_type: VARCHAR}
+        - {name: DateOfBirth, data_type: DATE}
+        - {name: AddressLine1, data_type: VARCHAR}
+        - {name: City, data_type: VARCHAR}
+        - {name: State, data_type: VARCHAR}
+        - {name: ZipCode, data_type: VARCHAR}
+        - {name: PhoneNumber, data_type: VARCHAR}
+        - {name: EmailAddress, data_type: VARCHAR}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+        - {name: LastUpdatedDate, data_type: TIMESTAMP_NTZ}
+    - name: Policies
+      columns:
+        - {name: PolicyID, data_type: VARCHAR, is_primary_key: true}
+        - {name: CustomerID, data_type: VARCHAR, is_foreign_key: true, references: Customers.CustomerID}
+        - {name: PolicyType, data_type: VARCHAR}
+        - {name: EffectiveDate, data_type: DATE}
+        - {name: ExpirationDate, data_type: DATE}
+        - {name: Status, data_type: VARCHAR}
+        - {name: TotalPremium, data_type: DECIMAL}
+        - {name: UnderwriterID, data_type: VARCHAR, is_foreign_key: true, references: Users.UserID}
+        - {name: IssueDate, data_type: DATE}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+        - {name: LastUpdatedDate, data_type: TIMESTAMP_NTZ}
+    - name: PolicyCoverages
+      columns:
+        - {name: PolicyCoverageID, data_type: VARCHAR, is_primary_key: true}
+        - {name: PolicyID, data_type: VARCHAR, is_foreign_key: true, references: Policies.PolicyID}
+        - {name: CoverageType, data_type: VARCHAR}
+        - {name: CoverageLimit, data_type: DECIMAL}
+        - {name: Deductible, data_type: DECIMAL}
+        - {name: PremiumForCoverage, data_type: DECIMAL}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+        - {name: LastUpdatedDate, data_type: TIMESTAMP_NTZ}
+    - name: InsuredAssets
+      columns:
+        - {name: InsuredAssetID, data_type: VARCHAR, is_primary_key: true}
+        - {name: PolicyID, data_type: VARCHAR, is_foreign_key: true, references: Policies.PolicyID}
+        - {name: AssetType, data_type: VARCHAR}
+        - {name: Description, data_type: VARCHAR}
+        - {name: InsuredValue, data_type: DECIMAL}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+        - {name: LastUpdatedDate, data_type: TIMESTAMP_NTZ}
+    - name: PolicyTransactions
+      columns:
+        - {name: PolicyTransactionID, data_type: VARCHAR, is_primary_key: true}
+        - {name: PolicyID, data_type: VARCHAR, is_foreign_key: true, references: Policies.PolicyID}
+        - {name: TransactionType, data_type: VARCHAR}
+        - {name: TransactionDate, data_type: DATE}
+        - {name: EffectiveDate, data_type: DATE}
+        - {name: PremiumChangeAmount, data_type: DECIMAL}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+    - name: BillingSchedules
+      columns:
+        - {name: BillingScheduleID, data_type: VARCHAR, is_primary_key: true}
+        - {name: PolicyID, data_type: VARCHAR, is_foreign_key: true, references: Policies.PolicyID}
+        - {name: DueDate, data_type: DATE}
+        - {name: AmountDue, data_type: DECIMAL}
+        - {name: Status, data_type: VARCHAR}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+        - {name: LastUpdatedDate, data_type: TIMESTAMP_NTZ}
+    - name: Claims
+      columns:
+        - {name: ClaimID, data_type: VARCHAR, is_primary_key: true}
+        - {name: PolicyID, data_type: VARCHAR, is_foreign_key: true, references: Policies.PolicyID}
+        - {name: InsuredAssetID, data_type: VARCHAR, is_foreign_key: true, references: InsuredAssets.InsuredAssetID}
+        - {name: DateOfLoss, data_type: TIMESTAMP_NTZ}
+        - {name: DateReported, data_type: TIMESTAMP_NTZ}
+        - {name: CauseOfLoss, data_type: VARCHAR}
+        - {name: LossDescription, data_type: VARCHAR}
+        - {name: Status, data_type: VARCHAR}
+        - {name: AssignedAdjusterID, data_type: VARCHAR, is_foreign_key: true, references: Users.UserID}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+        - {name: LastUpdatedDate, data_type: TIMESTAMP_NTZ}
+    - name: Claimants
+      columns:
+        - {name: ClaimantID, data_type: VARCHAR, is_primary_key: true}
+        - {name: ClaimID, data_type: VARCHAR, is_foreign_key: true, references: Claims.ClaimID}
+        - {name: CustomerID, data_type: VARCHAR, is_foreign_key: true, references: Customers.CustomerID}
+        - {name: ClaimantType, data_type: VARCHAR}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+        - {name: LastUpdatedDate, data_type: TIMESTAMP_NTZ}
+    - name: ClaimCoverages
+      columns:
+        - {name: ClaimCoverageID, data_type: VARCHAR, is_primary_key: true}
+        - {name: ClaimID, data_type: VARCHAR, is_foreign_key: true, references: Claims.ClaimID}
+        - {name: PolicyCoverageID, data_type: VARCHAR, is_foreign_key: true, references: PolicyCoverages.PolicyCoverageID}
+        - {name: Status, data_type: VARCHAR}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+    - name: ClaimReserves
+      columns:
+        - {name: ClaimReserveID, data_type: VARCHAR, is_primary_key: true}
+        - {name: ClaimID, data_type: VARCHAR, is_foreign_key: true, references: Claims.ClaimID}
+        - {name: PolicyCoverageID, data_type: VARCHAR, is_foreign_key: true, references: PolicyCoverages.PolicyCoverageID}
+        - {name: ReserveType, data_type: VARCHAR}
+        - {name: CurrentReserveAmount, data_type: DECIMAL}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+        - {name: LastUpdatedDate, data_type: TIMESTAMP_NTZ}
+    - name: ClaimPayments
+      columns:
+        - {name: ClaimPaymentID, data_type: VARCHAR, is_primary_key: true}
+        - {name: ClaimID, data_type: VARCHAR, is_foreign_key: true, references: Claims.ClaimID}
+        - {name: PolicyCoverageID, data_type: VARCHAR, is_foreign_key: true, references: PolicyCoverages.PolicyCoverageID}
+        - {name: ClaimantID, data_type: VARCHAR, is_foreign_key: true, references: Claimants.ClaimantID}
+        - {name: PaymentAmount, data_type: DECIMAL}
+        - {name: PaymentDate, data_type: DATE}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+    - name: ClaimSubrogations
+      columns:
+        - {name: SubrogationID, data_type: VARCHAR, is_primary_key: true}
+        - {name: ClaimID, data_type: VARCHAR, is_foreign_key: true, references: Claims.ClaimID}
+        - {name: AmountRecovered, data_type: DECIMAL}
+        - {name: Status, data_type: VARCHAR}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+        - {name: LastUpdatedDate, data_type: TIMESTAMP_NTZ}
+    - name: ClaimNotes
+      columns:
+        - {name: ClaimNoteID, data_type: VARCHAR, is_primary_key: true}
+        - {name: ClaimID, data_type: VARCHAR, is_foreign_key: true, references: Claims.ClaimID}
+        - {name: NoteText, data_type: VARCHAR}
+        - {name: CreatedByUserID, data_type: VARCHAR, is_foreign_key: true, references: Users.UserID}
+        - {name: CreatedDate, data_type: TIMESTAMP_NTZ}
+  relationships:
+    - {from_table: Policies, from_column: CustomerID, to_table: Customers, to_column: CustomerID}
+    - {from_table: Policies, from_column: UnderwriterID, to_table: Users, to_column: UserID}
+    - {from_table: PolicyCoverages, from_column: PolicyID, to_table: Policies, to_column: PolicyID}
+    - {from_table: InsuredAssets, from_column: PolicyID, to_table: Policies, to_column: PolicyID}
+    - {from_table: PolicyTransactions, from_column: PolicyID, to_table: Policies, to_column: PolicyID}
+    - {from_table: BillingSchedules, from_column: PolicyID, to_table: Policies, to_column: PolicyID}
+    - {from_table: Claims, from_column: PolicyID, to_table: Policies, to_column: PolicyID}
+    - {from_table: Claims, from_column: InsuredAssetID, to_table: InsuredAssets, to_column: InsuredAssetID}
+    - {from_table: Claims, from_column: AssignedAdjusterID, to_table: Users, to_column: UserID}
+    - {from_table: Claimants, from_column: ClaimID, to_table: Claims, to_column: ClaimID}
+    - {from_table: Claimants, from_column: CustomerID, to_table: Customers, to_column: CustomerID}
+    - {from_table: ClaimCoverages, from_column: ClaimID, to_table: Claims, to_column: ClaimID}
+    - {from_table: ClaimCoverages, from_column: PolicyCoverageID, to_table: PolicyCoverages, to_column: PolicyCoverageID}
+    - {from_table: ClaimReserves, from_column: ClaimID, to_table: Claims, to_column: ClaimID}
+    - {from_table: ClaimReserves, from_column: PolicyCoverageID, to_table: PolicyCoverages, to_column: PolicyCoverageID}
+    - {from_table: ClaimPayments, from_column: ClaimID, to_table: Claims, to_column: ClaimID}
+    - {from_table: ClaimPayments, from_column: PolicyCoverageID, to_table: PolicyCoverages, to_column: PolicyCoverageID}
+    - {from_table: ClaimPayments, from_column: ClaimantID, to_table: Claimants, to_column: ClaimantID}
+    - {from_table: ClaimSubrogations, from_column: ClaimID, to_table: Claims, to_column: ClaimID}
+    - {from_table: ClaimNotes, from_column: ClaimID, to_table: Claims, to_column: ClaimID}
+    - {from_table: ClaimNotes, from_column: CreatedByUserID, to_table: Users, to_column: UserID}
+

@@ -1,0 +1,89 @@
+# Sample Requirements Document: P&C Insurance Policy & Claims System Testing
+
+## 1. Introduction
+
+This document outlines the high-level requirements for testing a comprehensive Property and Casualty (P&C) Insurance software system. The primary goal is to ensure the accuracy, integrity, and performance of the system across its core Policy Administration and Claims Management domains. Testing should validate data transformations, business rule enforcement, financial calculations, and reporting capabilities within the Snowflake database environment.
+
+## 2. Scope of Testing
+
+The testing will cover the end-to-end lifecycle of insurance policies and claims, focusing on data stored and processed within the Snowflake database. This includes but is not limited to:
+
+*   Policy origination, underwriting, and issuance.
+*   Policy servicing (endorsements, renewals, cancellations).
+*   Premium billing and collection.
+*   Claims registration (FNOL), adjudication, and settlement.
+*   Reserve management.
+*   Subrogation detection indicators.
+*   Regulatory reporting data points.
+
+## 3. Policy Administration Domain Requirements for Testing
+
+### 3.1. Policy Creation & Underwriting
+*   **REQ-POL-001:** Verify that new policy applications are accurately captured with all required customer, property/vehicle, and coverage details.
+*   **REQ-POL-002:** Test the underwriting rule engine for correct risk assessment and premium calculation based on standard rating factors (e.g., location, age, construction type for property; driver history, vehicle type for auto).
+*   **REQ-POL-003:** Ensure policy documents are generated with correct terms, conditions, and coverage limits upon issuance.
+*   **REQ-POL-004:** Validate the data integrity of policyholder information, including contact details, and insured interest details.
+
+### 3.2. Policy Servicing
+*   **REQ-POL-005:** Test the process for policy endorsements (e.g., change of address, increase in coverage), ensuring premium adjustments are calculated correctly and policy records are updated.
+*   **REQ-POL-006:** Verify the accuracy of the policy renewal process, including automated notifications, re-underwriting (if applicable), and updated premium calculations.
+*   **REQ-POL-007:** Test policy cancellation procedures, including calculation of pro-rata or short-rate return premiums and updating policy status.
+
+### 3.3. Premium Management
+*   **REQ-POL-008:** Validate the accuracy of premium installment calculations and billing schedules.
+*   **REQ-POL-009:** Test the recording of premium payments and reconciliation with outstanding balances.
+*   **REQ-POL-010:** Verify the generation of billing statements and overdue notices.
+
+## 4. Claims Management Domain Requirements for Testing
+
+### 4.1. First Notice of Loss (FNOL) & Claim Setup
+*   **REQ-CLM-001:** Ensure accurate and complete capture of FNOL information, including date of loss, cause of loss, policy in force verification, and claimant details.
+*   **REQ-CLM-002:** Test the assignment of claim numbers and initial claim record setup in the database.
+*   **REQ-CLM-003:** Verify that the system correctly links the claim to the relevant policy and coverages.
+
+### 4.2. Claim Adjudication & Processing
+*   **REQ-CLM-004:** Test the claim validation process, ensuring that coverage is active and applicable to the reported loss.
+*   **REQ-CLM-005:** Verify the system's ability to record claim investigation details, including adjuster notes, supporting documents, and loss assessments.
+*   **REQ-CLM-006:** Test the calculation and application of deductibles and policy limits to claim payments.
+
+### 4.3. Reserve Management
+*   **REQ-CLM-007:** Validate the initial setting of claim reserves (indemnity and expense) based on preliminary loss information and reserving guidelines.
+*   **REQ-CLM-008:** Test the process for reserve adjustments as more information becomes available during the claim lifecycle.
+*   **REQ-CLM-009:** Ensure reserve data is accurately reflected in financial reporting tables.
+
+### 4.4. Payment & Settlement
+*   **REQ-CLM-010:** Verify the accuracy of claim payment calculations for approved claims.
+*   **REQ-CLM-011:** Test the recording of claim payments (indemnity, legal fees, repair costs, etc.) and their allocation to specific coverages.
+*   **REQ-CLM-012:** Ensure claim status is updated correctly upon full or partial settlement and closure.
+
+### 4.5. Subrogation & Recovery
+*   **REQ-CLM-013:** Test the identification of potential subrogation opportunities.
+*   **REQ-CLM-014:** Verify the tracking of recovery efforts and amounts recovered.
+
+### 4.6. Subrogation Detection
+*   **REQ-CLM-015:** Test the system's ability to flag potentially Subrogationulent claims based on predefined rules or analytical model scores (e.g., multiple claims in a short period, inconsistencies in reporting).
+*   **REQ-CLM-016:** Ensure that flagged claims are routed for special investigation.
+
+## 5. General Data & Reporting Requirements for Testing
+
+*   **REQ-GEN-001:** Verify the accuracy of data aggregations for key performance indicators (KPIs) such as loss ratios, expense ratios, claim settlement times, and policy retention rates.
+*   **REQ-GEN-002:** Test the generation of data for regulatory reports, ensuring compliance with required formats and data elements.
+*   **REQ-GEN-003:** Ensure data lineage and audit trails are maintained for critical policy and claim transactions.
+*   **REQ-GEN-004:** Validate data consistency between different modules (e.g., policy information used in claims processing).
+
+## 6. Expected Test Use Cases (Examples to be generated by Agent 1)
+
+Based on the above requirements, Agent 1 should generate high-level test use cases such as:
+
+*   "Verify premium calculation for a new auto policy with multiple drivers and vehicles."
+*   "Test the claim payment process for a property damage claim exceeding coverage limits."
+*   "Ensure that a policy endorsement for adding a new insured property correctly updates the total insured value and premium."
+*   "Validate that claims flagged for potential Subrogation are correctly assigned to the SIU (Special Investigations Unit) queue."
+*   "Check the accuracy of the monthly claims paid report for the commercial property line of business."
+*   "Verify that policy renewal offers are generated 60 days prior to policy expiration for eligible personal auto policies."
+*   "Test the system's handling of a claim reported after policy cancellation but where the loss date was within the active policy period."
+*   "Ensure reserve adequacy by comparing initial reserves to final claim settlement amounts for a cohort of closed claims."
+*   "Validate that all required fields are captured during the FNOL process for a workers' compensation claim."
+*   "Test the application of deductibles for a series of small auto physical damage claims."
+
+This document will serve as the primary input for Agent 1 (Requirements Analyzer) to derive these and other relevant high-level testing objectives.
